@@ -36,7 +36,7 @@ install_programs () {
 	} || {
 		echo "[-] Couldn't download impacket"
 	}
-	echo "export PATH=$PATH:~/Scripts/*">>~/.bashrc
+	echo "export PATH=$PATH:~/Scripts/">>~/.bashrc
 }
 
 echo "Kali Setup Program by XeventoHD"
