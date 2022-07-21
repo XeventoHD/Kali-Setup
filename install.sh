@@ -1,19 +1,17 @@
 #!/bin/bash
 
-  local _default _response
-
 backup_scripts () {
-	cp -a ~/Scripts/. ~/backup_Scripts/
-	rmdir ~/Scripts
-	mkdir ~/Scripts
+	cp -a /Scripts/. /backup_Scripts/
+	rm -r /Scripts
+	mkdir /Scripts
 }
 
 install_programs () {
 	echo "[!] Trying to install kerbrute"
 	{
-		curl https://github.com/ropnop/kerbrute/releases/download/v1.0.3/kerbrute_linux_amd64 > ~/Scripts/kerbrute &&
+		curl https://github.com/ropnop/kerbrute/releases/download/v1.0.3/kerbrute_linux_amd64 > /Scripts/kerbrute &&
 		{
-			chmod +x kerbrute &&
+			chmod +x /Scripts/kerbrute &&
 			echo "[+] kerbrute installed successfully"
 		} || {
 			echo "[-] Couldn't chmod kerbrute (are you root?)"
@@ -33,12 +31,26 @@ install_programs () {
 				echo "[-] Couldn't install impacket"
 			}
 		} || {
-			echo "[-]Couldn't install dependencies"
+			echo "[-] Couldn't download impacket or install dependencies"
+			echo "[.] Is it already installed?"
 		}
 	} || {
-		echo "[-] Couldn't download impacket"
+		echo "This apparently never gets called"
 	}
-	echo "export PATH=$PATH:~/Scripts/">>~/.bashrc
+	
+	echo "[!] Adding Scripts to PATH variable"
+	{
+		echo "export PATH=\$PATH:/Scripts/">>~/.bashrc &&
+		echo "[+] Added Scripts to PATH successfully"
+		echo "[.] You may need to add it to your own user"
+		echo "[.] As it is now added to roots PATH"
+		echo "[.] You can add it on your own by"
+		echo "[.] Pasting 'export PATH=\$PATH:/Scripts/' into ~/.bashrc"
+	} || {
+		echo "[-] Couldn't add Scripts to PATH"
+		echo "[.] You can do it yourself"
+		echo "[.] Paste 'export PATH=\$PATH:~/Scripts/' into ~/.bashrc"
+	}
 }
 
 echo "Kali Setup Program by XeventoHD"
@@ -62,10 +74,8 @@ if [ ! -d ~/Scripts ]
   				case "$yn" in
     					[Yy][Ee][Ss]|[Yy])
       						backup_scripts; install_programs; break;;
-      						;;
     					[Nn][Oo]|[Nn])
       						exit;;
-      						;;
     					*)
       						;;
   			esac
