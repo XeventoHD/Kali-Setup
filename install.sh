@@ -42,10 +42,10 @@ install_programs () {
 echo "Kali Setup Program by XeventoHD"
 echo ""
 echo "[!] Creating Scripts folder"
-if [ ! -d "~/Scripts" ]
+if [ ! -d ~/Scripts ]
 	then
 		{
-			mkdir "~/Scripts" &&
+			mkdir ~/Scripts &&
 			echo "[+] Successfully created Scripts folder"
 		} || {
 			echo "[-] Failed to create Scripts folder"
