@@ -1,5 +1,7 @@
 #!/bin/bash
 
+  local _default _response
+
 backup_scripts () {
 	cp -a ~/Scripts/. ~/backup_Scripts/
 	rmdir ~/Scripts
@@ -56,11 +58,16 @@ if [ ! -d ~/Scripts ]
 		echo "[!] Scripts folder already exists"
 		echo "[!] To install properly the program needs an empty Scripts folder."
 		while true; do
-			read -p "[?] Backup original Scripts folder?" yn
-			case $yn in
-				[Yy]* ) backup_scripts; install_programs; break;;
-				[Nn]* ) exit;;
-				* ) echo "Please answer yes or no.";;
-			esac
+  			read -r -p "[?] Backup original Scripts folder? [y/n]" yn
+  				case "$yn" in
+    					[Yy][Ee][Ss]|[Yy])
+      						backup_scripts; install_programs; break;;
+      						;;
+    					[Nn][Oo]|[Nn])
+      						exit;;
+      						;;
+    					*)
+      						;;
+  			esac
 		done
 fi
