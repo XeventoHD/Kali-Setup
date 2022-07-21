@@ -9,4 +9,9 @@ Adds:
   kerbrute
   impacket
   
-Execute program as root.
+How to use:
+Download install.sh
+chmod +x install.sh
+sudo ./install.sh
+
+WORK IN PROGRESS
