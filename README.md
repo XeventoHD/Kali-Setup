@@ -9,7 +9,7 @@ Adds:
   kerbrute
   impacket
   
-How to use:
+How to use
 Download install.sh
 chmod +x install.sh
 sudo ./install.sh
